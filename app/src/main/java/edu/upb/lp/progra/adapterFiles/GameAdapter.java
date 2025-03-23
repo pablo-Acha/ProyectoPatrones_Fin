@@ -1,6 +1,6 @@
 package edu.upb.lp.progra.adapterFiles;
 
-import edu.upb.lp.progra.finalCheemsJuego.FinalCheemsConector;
+import edu.upb.lp.progra.finalCheemsJuego2.FinalCheemsConector;
 
 /**
  * This class allows to select what UI will be used by the Android library.

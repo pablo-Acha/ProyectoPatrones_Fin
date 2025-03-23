@@ -2,7 +2,7 @@ package edu.upb.lp.progra.finalCheemsJuego;
 
 public class Heroe extends Personaje {
 
-    public Heroe(int posicionV, int posicionH, FinalCheemsGame game, String nombre, String tipoDeBala) {
+    public Heroe(int posicionV, int posicionH, FinalCheemsGame game, String nombre, String tipoDeBala){
         super(posicionV, posicionH, game, nombre, tipoDeBala);
     }
 
