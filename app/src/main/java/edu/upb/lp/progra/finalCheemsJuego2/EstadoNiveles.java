@@ -2,7 +2,7 @@ package edu.upb.lp.progra.finalCheemsJuego2;
 
 public class EstadoNiveles implements EstadoJuego {
     private ControladorJuego controlador;
-
+    private FabricaEnemigos fabricaEnemigos;
     public EstadoNiveles(ControladorJuego controlador) {
         this.controlador = controlador;
         iniciar();
@@ -11,6 +11,13 @@ public class EstadoNiveles implements EstadoJuego {
     @Override
     public void iniciar() {
         // Cargar el primer nivel
+        if(controlador.getModelo().getNivelActual() ==1){
+            //crear fabrica de enemigos facil
+            fabricaEnemigos= new FabricaEnemigoFacil();
+            for(int i=0; i<5; i++){
+                controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo());
+            }
+        }
         controlador.getVista().cargarNivel(1);
         controlador.getModelo().cargarNivel(1);
     }
@@ -43,5 +50,4 @@ public class EstadoNiveles implements EstadoJuego {
         // Actualizar la Vista con el estado actual del nivel
 //        controlador.getVista().actualizar();
     }
-
 }

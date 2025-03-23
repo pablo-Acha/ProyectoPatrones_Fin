@@ -4,14 +4,14 @@
             "outputFile": "edu.upb.lp.genericgame.app-debug-4:/values-v14_values-v14.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "from": {
                         "startLines": "7",
                         "startColumns": "4",
-                        "startOffsets": "220",
+                        "startOffsets": "227",
                         "endLines": "9",
                         "endColumns": "12",
-                        "endOffsets": "366"
+                        "endOffsets": "375"
                     },
                     "to": {
                         "startLines": "2",
@@ -28,13 +28,13 @@
             "outputFile": "edu.upb.lp.genericgame.app-debug-4:/values-sw720dp-land-v13_values-sw720dp-land-v13.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",
-                        "startOffsets": "200",
+                        "startOffsets": "206",
                         "endColumns": "58",
-                        "endOffsets": "254"
+                        "endOffsets": "260"
                     },
                     "to": {
                         "startLines": "2",
@@ -50,30 +50,13 @@
             "outputFile": "edu.upb.lp.genericgame.app-debug-4:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values\\dimens.xml",
-                    "from": {
-                        "startLines": "3,4",
-                        "startColumns": "4,4",
-                        "startOffsets": "89,147",
-                        "endColumns": "57,55",
-                        "endOffsets": "142,198"
-                    },
-                    "to": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,113",
-                        "endColumns": "57,55",
-                        "endOffsets": "108,164"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "56",
+                        "startOffsets": "59",
                         "endColumns": "44",
-                        "endOffsets": "96"
+                        "endOffsets": "99"
                     },
                     "to": {
                         "startLines": "4",
@@ -84,14 +67,31 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "92,151",
+                        "endColumns": "57,55",
+                        "endOffsets": "145,202"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "6,15",
                         "startColumns": "4,4",
-                        "startOffsets": "186,510",
+                        "startOffsets": "192,525",
                         "endLines": "12,17",
                         "endColumns": "12,12",
-                        "endOffsets": "472,665"
+                        "endOffsets": "484,682"
                     },
                     "to": {
                         "startLines": "5,8",
@@ -108,14 +108,14 @@
             "outputFile": "edu.upb.lp.genericgame.app-debug-4:/values-v11_values-v11.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\pablo\\Desktop\\cosas\\UPBGame2023\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "source": "C:\\Users\\usuario\\AndroidStudioProjects\\ProyectoPatrones\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",
-                        "startOffsets": "177",
+                        "startOffsets": "183",
                         "endLines": "8",
                         "endColumns": "12",
-                        "endOffsets": "309"
+                        "endOffsets": "317"
                     },
                     "to": {
                         "startLines": "2",

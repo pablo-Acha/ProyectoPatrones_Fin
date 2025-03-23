@@ -1,19 +1,21 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ModeloJuego {
     // Atributos
     private Heroe heroe;
-//    private List<Enemigo> enemigos;
+    private List<Enemigo> enemigos = new ArrayList<>();
     private LinkedList<Balas> listabalas = new LinkedList<>();
 //    private List<Item> items;
     private boolean[][] paredesYobstaculos;
     private int nivelActual;
     private int vidas;
     private int puntuacion;
-
+    private FabricaEnemigos fabricaEnemigos;
     // Constructor
     public ModeloJuego() {
 //        this.personaje = new Personaje();
@@ -39,14 +41,20 @@ public class ModeloJuego {
     public void cargarNivel(int nivel) {
         this.nivelActual = nivel;
         inicializarParedesyObstaculos();
+        //inicializarEnemigos();
         // Inicializar enemigos, ítems, trampas, etc., según el nivel
 //        inicializarEnemigos();
 //        inicializarItems();
         // Notificar al Mediator que el nivel ha sido cargado
         //mediator.notificar("nivelCargado", nivel);
     }
+    public void inicializarEnemigos(Enemigo enemigo) {
+        enemigos.add(enemigo); // Se usa la fábrica
+    }
 
-
+    public List<Enemigo> getEnemigos() {
+        return enemigos;
+    }
     public void accionPersonaje(String accion){
         if(accion.equals("disparar")){
             if(heroe.hasMunicion()){
