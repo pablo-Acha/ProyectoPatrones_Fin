@@ -6,7 +6,6 @@ public class Heroe implements Atacados {
     private String direccion;
     private MediatorObjetos mediator;
     private String nombre;
-
     int vida = 100;
 
     private int municion = 100;
@@ -50,7 +49,7 @@ public class Heroe implements Atacados {
 
     public void disparar(){
         if(municion>0){
-            mediator.notificar("heroeDispara", new Object[]{posicionY, posicionX,direccion});
+            mediator.notificar("heroeDispara", new Object[]{posicionY, posicionX,direccion,this});
             municion-=1;
             mediator.notificar("modificarMunicion",municion);
         }

@@ -46,7 +46,8 @@ public class MediatorObjetos implements Mediator{
         String direccion = (String) datosMovimiento[5];
         String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorX;
         Enemigo enemigo = (Enemigo) datosMovimiento[6];
-        if(controlador.getModelo().haycolsionPared(direccion,posicionAnteriorY,posicionAnteriorX)){
+        if(controlador.getModelo().haycolsionPared(direccion,posicionAnteriorY,posicionAnteriorX)
+            || controlador.getModelo().verificarColsionesEnemigoHeroe(nuevaPosicionY,posicionAnteriorX,direccion)){
             retrocederEnemigo(direccion,controlador.getModelo().getListaEnemigos().indexOf(enemigo));
         } else{
             controlador.getVista().actualizarCelda(posicionAnteriorY, posicionAnteriorX,fondo);
@@ -185,6 +186,7 @@ public class MediatorObjetos implements Mediator{
         int vida = (int) remitente;
         controlador.getVista().actualizarMunicion(vida);
     }
+
 }
 
 

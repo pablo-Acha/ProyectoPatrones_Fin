@@ -83,7 +83,8 @@ public class ModeloJuego {
      * @param posicion La posición donde ira.
      */
     public void moverPersonaje(String posicion) {
-        if (!haycolsionPared(posicion,heroe.getPosicionY(),heroe.getPosicionX())) {
+        if (!haycolsionPared(posicion,heroe.getPosicionY(),heroe.getPosicionX())
+            && !verificarColsionesHeroeEnemigo(heroe.getPosicionY(),heroe.getPosicionX(),posicion)) {
             heroe.mover(posicion);
         }
     }
@@ -120,6 +121,38 @@ public class ModeloJuego {
         return false;
     }
 
+    public boolean verificarColsionesEnemigoHeroe(int y, int x, String direccion){
+        if(direccion.equals("arriba")){
+            y-=1;
+        }else if(direccion.equals("abajo")){
+            y+=1;
+        }else if(direccion.equals("derecha")){
+            x+=1;
+        }else{
+            x-=1;
+        }
+        return y == heroe.getPosicionY() && x == heroe.getPosicionX();
+    }
+    public boolean verificarColsionesHeroeEnemigo(int y, int x, String direccion) {
+        // Calcular nueva posición
+        if(direccion.equals("arriba")) {
+            y -= 1;
+        } else if(direccion.equals("abajo")) {
+            y += 1;
+        } else if(direccion.equals("derecha")) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+
+        // Verificar colisión con cada enemigo
+        for (Enemigo enemigo : listaEnemigos) {
+            if(y == enemigo.getPosicionY() && x == enemigo.getPosicionX()) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Recoge un ítem en la posición especificada.
      * @param posicionY La posición vertical.
