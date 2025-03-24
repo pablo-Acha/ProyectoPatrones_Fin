@@ -16,6 +16,7 @@ public class ModeloJuego {
     private int vidas;
     private int puntuacion;
     private FabricaEnemigos fabricaEnemigos;
+    private PreferenciasJuego preferencias;
 
     public void setConector(FinalCheemsConector conector) {
         this.conector = conector;
@@ -31,6 +32,10 @@ public class ModeloJuego {
         this.nivelActual = 1;
         this.vidas = 3;
         this.puntuacion = 0;
+        this.preferencias = new PreferenciasJuego();
+
+        // Cargar datos guardados al iniciar el juego
+        //cargarDatosGuardados();
     }
 
     // Métodos
