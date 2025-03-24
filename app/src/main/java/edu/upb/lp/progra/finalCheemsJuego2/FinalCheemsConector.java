@@ -12,12 +12,16 @@ public class FinalCheemsConector implements AppConnector {
     private ModeloJuego modelo;
 
 
+    public AndroidLibrary getLibrary() {
+        return library;
+    }
+
     public FinalCheemsConector(AndroidLibrary library) {
         this.library = library;
         this.vista = new VistaJuego(this);
         // 2. Crear el Modelo
         this.modelo = new ModeloJuego();
-
+        this.modelo.setConector(this);
         // 3. Crear el Controlador
         this.controlador = new ControladorJuego(vista, modelo,this);
     }

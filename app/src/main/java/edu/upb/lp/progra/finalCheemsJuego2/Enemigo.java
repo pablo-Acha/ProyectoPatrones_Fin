@@ -6,4 +6,5 @@ package edu.upb.lp.progra.finalCheemsJuego2;
 public interface Enemigo extends Movible{
     void atacar();
     void aparecer();
+    boolean estaMuerto();
 }

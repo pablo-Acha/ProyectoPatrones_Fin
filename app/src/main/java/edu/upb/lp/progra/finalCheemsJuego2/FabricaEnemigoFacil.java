@@ -12,11 +12,11 @@ public class FabricaEnemigoFacil implements FabricaEnemigos{
     }
 //    int posicionY, int posicionX, String direccion, String nombreimage, RunnableMediator runnableMediator, MediatorObjetos mediatorObjetos
     @Override
-    public Enemigo crearEnemigo() {
+    public Enemigo crearEnemigo(EstrategiaMovimiento em) {
         Random random = new Random();
         int x = random.nextInt(10)+5;
         int y = random.nextInt(5)+1;
 
-        return new EnemigoBase(y,x,"derecha","chihuhuafacil1",runnableMediator,mediatorObjetos);
+        return new EnemigoBase(y,x,"derecha","chihuhuafacil1",runnableMediator,mediatorObjetos, em);
     }
 }

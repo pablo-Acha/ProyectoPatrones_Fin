@@ -16,6 +16,12 @@ public class ModeloJuego {
     private int vidas;
     private int puntuacion;
     private FabricaEnemigos fabricaEnemigos;
+
+    public void setConector(FinalCheemsConector conector) {
+        this.conector = conector;
+    }
+
+    private FinalCheemsConector conector;
     // Constructor
     public ModeloJuego() {
 //        this.personaje = new Personaje();
@@ -28,6 +34,10 @@ public class ModeloJuego {
     }
 
     // Métodos
+
+    public Heroe getHeroe() {
+        return heroe;
+    }
 
     public void escogerHeroe(String nombre, MediatorObjetos mediator){
         heroe = new Heroe(1,5,"derecha",nombre+nivelActual,mediator);
@@ -52,6 +62,7 @@ public class ModeloJuego {
     }
     public void inicializarEnemigos(Enemigo enemigo) {
         listaEnemigos.add(enemigo); // Se usa la fábrica
+        conector.executeLater((EnemigoBase)enemigo, 0);
     }
 
     public List<Enemigo> getListaEnemigos() {
@@ -186,6 +197,16 @@ public class ModeloJuego {
                 ||posicion.equals("izquierda") && paredesYobstaculos[y][x-1];
 
     }
+    //public void borrarEnemigo(){
+      //  for (int i = 0; i < listaEnemigos.size(); i++) {
+        //    EnemigoBase enemigo = (EnemigoBase) listaEnemigos.get(i);
+          //  if (enemigo.estaMuerto()){
+            //    conector.getLibrary().setImageOnCell(enemigo.getPosicionY(), enemigo.getPosicionX(),"pantalladeljuego"+nivel+enemigo.getPosicionY()+"_"+enemigo.getPosicionX());
+              //  enemigo.morir();
+                //listaEnemigos.remove(i);
+            //}
+        //}
+    //}
     // Getters y Setters
 //    public Personaje getPersonaje() {
 //        return personaje;

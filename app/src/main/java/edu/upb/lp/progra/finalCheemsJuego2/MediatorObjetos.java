@@ -23,7 +23,24 @@ public class MediatorObjetos implements Mediator{
            heroeDispara(remitente);
         }else if(evento.equals("enemigoAparecer")){
             aparecerEnemigo(remitente);
+        }else if(evento.equals("enemigoMovido")){
+            moverEnemigo(remitente);
         }
+    }
+
+    private void moverEnemigo(Object remitente) {
+        Object[] datosMovimiento = (Object[]) remitente;
+        int posicionAnteriorY = (int) datosMovimiento[0];
+        int posicionAnteriorX = (int) datosMovimiento[1];
+        int nuevaPosicionY = (int) datosMovimiento[2];
+        int nuevaPosicionX = (int) datosMovimiento[3];
+        String nombre = (String) datosMovimiento[4];
+        String direccion = (String) datosMovimiento[5];
+        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorY;
+        controlador.getVista().actualizarCelda(posicionAnteriorY, posicionAnteriorX,fondo);
+        controlador.getVista().actualizarCelda(nuevaPosicionY, nuevaPosicionX,nombre+direccion);
+
+
     }
 
 

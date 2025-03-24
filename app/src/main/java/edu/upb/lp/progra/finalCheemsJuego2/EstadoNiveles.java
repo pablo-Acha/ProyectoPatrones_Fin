@@ -17,7 +17,7 @@ public class EstadoNiveles implements EstadoJuego {
             controlador.getModelo().cargarNivel(1);
             fabricaEnemigos= new FabricaEnemigoFacil(controlador.getMediator(),controlador.getRunnableMediator());
             for(int i=0; i<5; i++){
-                controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo());
+                controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo(i%2==0?new MovimientoAleatorio():new MovimientoPersecucion(controlador.getModelo().getHeroe())));
             }
 
         }
@@ -25,6 +25,7 @@ public class EstadoNiveles implements EstadoJuego {
 
     @Override
     public void actualizar() {
+        //controlador.getModelo().actualizarEnemigos();
         // Lógica de actualización del nivel
     }
 
