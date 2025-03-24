@@ -1,6 +1,7 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 public class EnemigoBase implements Enemigo, Movible, Runnable {
     private LinkedList<EnemigoObserver> observadores = new LinkedList<>();
@@ -13,7 +14,7 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
     MediatorObjetos mediatorObjetos;
     private boolean avanzar = true;
     private EstrategiaMovimiento estrategiaMovimiento;
-
+    int coldDown = 0;
     public int getPosicionY() {
         return posicionY;
     }
@@ -22,7 +23,7 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
         return posicionX;
     }
     public boolean stop = false;
-
+    Random random = new Random();
     public EnemigoBase(int posicionY, int posicionX, String direccion, String nombreimage, RunnableMediator runnableMediator, MediatorObjetos mediatorObjetos, EstrategiaMovimiento estrategiaMovimiento) {
         this.posicionY = posicionY;
         this.posicionX = posicionX;
@@ -80,7 +81,11 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
                 int posicionX = getPosicionX();
                 mover();
                 mediatorObjetos.notificar("enemigoMovido",new Object[]{posicionY, posicionX,getPosicionY(),getPosicionX(),nombreimage,direccion,this});
-                runnableMediator.notificar(1000,this);
+                runnableMediator.notificar(random.nextInt(1000)+1000,this);
+                if(coldDown%3 == 2){
+                    disparar();
+                }
+                coldDown+=1;
             }
         }
     }
@@ -93,6 +98,10 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
         for (EnemigoObserver observador : observadores) {
             observador.enemigoMuerto(this);
         }
+    }
+
+    public void disparar(){
+        mediatorObjetos.notificar("enemigoDispara", new Object[]{posicionY, posicionX,direccion});
     }
 
     @Override

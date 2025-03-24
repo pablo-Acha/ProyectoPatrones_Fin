@@ -27,6 +27,8 @@ public class MediatorObjetos implements Mediator{
             moverEnemigo(remitente);
         }else if(evento.equals("enemigoMuerto")){
             borrarEnemigo(remitente);
+        }else if(evento.equals("enemigoDispara")){
+            enemigoDispara(remitente);
         }
     }
 
@@ -144,6 +146,31 @@ public class MediatorObjetos implements Mediator{
         String direccion = (String) datosMovimiento[3];
         String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionY+"_"+posicionX;
         controlador.getVista().actualizarCelda(posicionY,posicionX,fondo);
+    }
+    public void enemigoDispara(Object remitente){
+        Object[] datosMovimiento = (Object[]) remitente;
+        int y = (int) datosMovimiento[0];
+        int x = (int) datosMovimiento[1];
+        String direccion = (String) datosMovimiento[2];
+
+        if(!controlador.getModelo().haycolsionPared(direccion,y,x)){
+            switch (direccion) {
+                case "arriba":
+                    y -= 1;
+                    break;
+                case "derecha":
+                    x += 1;
+                    break;
+                case "abajo":
+                    y += 1;
+                    break;
+                default:
+                    x -= 1;
+                    break;
+            }
+            Balas balaBase  = new BalaBase(y,x,direccion,"bala",controlador.getRunnableMediator(),this);
+            controlador.getModelo().addBala(balaBase);
+        }
     }
 }
 

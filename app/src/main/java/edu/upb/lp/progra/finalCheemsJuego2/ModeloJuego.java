@@ -32,9 +32,6 @@ public class ModeloJuego {
         this.vidas = 3;
         this.puntuacion = 0;
         this.preferencias = new PreferenciasJuego();
-
-        // Cargar datos guardados al iniciar el juego
-        //cargarDatosGuardados();
     }
 
     // Métodos
@@ -114,6 +111,11 @@ public class ModeloJuego {
                 enemigo.recibirDanio(20);
                 return true;
             }
+        }
+        if(bala.getPosicionY() == heroe.getPosicionY() &&
+                bala.getPosicionX() == heroe.getPosicionX()){
+            heroe.recibirDanio(20);
+            return true;
         }
         return false;
     }

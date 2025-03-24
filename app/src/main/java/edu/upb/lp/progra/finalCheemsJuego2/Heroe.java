@@ -1,8 +1,8 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
 public class Heroe implements Atacados {
-    int posicionX;
-    int posicionY;
+    private int posicionX;
+    private int posicionY;
     private String direccion;
     private MediatorObjetos mediator;
     private String nombre;
