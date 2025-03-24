@@ -13,13 +13,14 @@ public class EstadoNiveles implements EstadoJuego {
         // Cargar el primer nivel
         if(controlador.getModelo().getNivelActual() ==1){
             //crear fabrica de enemigos facil
-            fabricaEnemigos= new FabricaEnemigoFacil();
+            controlador.getVista().cargarNivel(1);
+            controlador.getModelo().cargarNivel(1);
+            fabricaEnemigos= new FabricaEnemigoFacil(controlador.getMediator(),controlador.getRunnableMediator());
             for(int i=0; i<5; i++){
                 controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo());
             }
+
         }
-        controlador.getVista().cargarNivel(1);
-        controlador.getModelo().cargarNivel(1);
     }
 
     @Override

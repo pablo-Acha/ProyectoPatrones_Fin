@@ -5,10 +5,29 @@ public class EnemigoBase implements Enemigo {
     private int posicionX;
     String direccion;
     String nombreimage;
+    RunnableMediator runnableMediator;
+    MediatorObjetos mediatorObjetos;
+    private boolean avanzar = true;
+//dispare
+
+    //soltar items
+    // reciber danio
+
+    public EnemigoBase(int posicionY, int posicionX, String direccion, String nombreimage, RunnableMediator runnableMediator, MediatorObjetos mediatorObjetos) {
+        this.posicionY = posicionY;
+        this.posicionX = posicionX;
+        this.direccion = direccion;
+        this.nombreimage = nombreimage;
+        this.runnableMediator = runnableMediator;
+        this.mediatorObjetos = mediatorObjetos;
+        aparecer();
+    }
 
     @Override
     public void run() {
+        if(avanzar){
 
+        }
     }
 
     @Override
@@ -40,5 +59,9 @@ public class EnemigoBase implements Enemigo {
     @Override
     public void atacar() {
 
+    }
+    @Override
+    public void aparecer(){
+        mediatorObjetos.notificar("enemigoAparecer",new Object[]{posicionY, posicionX,nombreimage,direccion});
     }
 }

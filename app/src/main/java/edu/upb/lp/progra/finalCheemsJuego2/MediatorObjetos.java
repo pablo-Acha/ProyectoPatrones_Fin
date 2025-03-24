@@ -21,6 +21,8 @@ public class MediatorObjetos implements Mediator{
             movimientoBala(remitente);
         }else if(evento.equals("heroeDispara")){
            heroeDispara(remitente);
+        }else if(evento.equals("enemigoAparecer")){
+            aparecerEnemigo(remitente);
         }
     }
 
@@ -52,12 +54,22 @@ public class MediatorObjetos implements Mediator{
             controlador.getVista().actualizarCelda(posicionAnteriorY,posicionAnteriorX,fondo);
             bala.setStop(false);
         }else{
+
+            //hacerdani0
             controlador.getVista().actualizarCelda(posicionAnteriorY,posicionAnteriorX,fondo);
             controlador.getVista().actualizarCelda(nuevaPosicionY,nuevaPosicionX,nombre);
         }
     }
 
     public void aparecerHeroe(Object remitente){
+        Object[] datosMovimiento = (Object[]) remitente;
+        int posicionY = (int) datosMovimiento[0];
+        int posicionX = (int) datosMovimiento[1];
+        String nombre = (String) datosMovimiento[2];
+        String direccion = (String) datosMovimiento[3];
+        controlador.getVista().actualizarCelda(posicionY,posicionX,nombre+direccion);
+    }
+    public void aparecerEnemigo(Object remitente){
         Object[] datosMovimiento = (Object[]) remitente;
         int posicionY = (int) datosMovimiento[0];
         int posicionX = (int) datosMovimiento[1];

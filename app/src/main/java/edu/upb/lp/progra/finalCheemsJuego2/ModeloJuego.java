@@ -8,7 +8,7 @@ import java.util.List;
 public class ModeloJuego {
     // Atributos
     private Heroe heroe;
-    private List<Enemigo> enemigos = new ArrayList<>();
+    private List<Enemigo> listaEnemigos = new ArrayList<>();
     private LinkedList<Balas> listabalas = new LinkedList<>();
 //    private List<Item> items;
     private boolean[][] paredesYobstaculos;
@@ -41,7 +41,9 @@ public class ModeloJuego {
     public void cargarNivel(int nivel) {
         this.nivelActual = nivel;
         inicializarParedesyObstaculos();
-        //inicializarEnemigos();
+        for (int i = 0; i < listaEnemigos.toArray().length-1; i++) {
+            listaEnemigos.get(i).aparecer();
+        }        //inicializarEnemigos();
         // Inicializar enemigos, ítems, trampas, etc., según el nivel
 //        inicializarEnemigos();
 //        inicializarItems();
@@ -49,11 +51,11 @@ public class ModeloJuego {
         //mediator.notificar("nivelCargado", nivel);
     }
     public void inicializarEnemigos(Enemigo enemigo) {
-        enemigos.add(enemigo); // Se usa la fábrica
+        listaEnemigos.add(enemigo); // Se usa la fábrica
     }
 
-    public List<Enemigo> getEnemigos() {
-        return enemigos;
+    public List<Enemigo> getListaEnemigos() {
+        return listaEnemigos;
     }
     public void accionPersonaje(String accion){
         if(accion.equals("disparar")){
