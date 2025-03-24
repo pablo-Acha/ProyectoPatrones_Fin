@@ -12,21 +12,12 @@ public class EstadoNiveles implements EstadoJuego {
     public void iniciar() {
         // Cargar el primer nivel
         if(controlador.getModelo().getNivelActual() ==1){
-            //crear fabrica de enemigos facil
-            controlador.getVista().cargarNivel(1);
-            controlador.getModelo().cargarNivel(1);
-            fabricaEnemigos= new FabricaEnemigoFacil(controlador.getMediator(),controlador.getRunnableMediator());
-            for(int i=0; i<5; i++){
-                controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo(i%2==0?new MovimientoAleatorio():new MovimientoPersecucion(controlador.getModelo().getHeroe())));
-            }
-
+            crearNivelUno();
         }
     }
 
     @Override
     public void actualizar() {
-        //controlador.getModelo().actualizarEnemigos();
-        // Lógica de actualización del nivel
     }
 
     @Override
@@ -49,7 +40,19 @@ public class EstadoNiveles implements EstadoJuego {
 
     @Override
     public void renderizar() {
-        // Actualizar la Vista con el estado actual del nivel
-//        controlador.getVista().actualizar();
+    }
+
+    private void crearNivelUno(){
+        //crear fabrica de enemigos facil
+        controlador.getVista().cargarNivel(1);
+        controlador.getModelo().cargarNivel(1);
+        fabricaEnemigos= new FabricaEnemigoFacil(controlador.getMediator(),controlador.getRunnableMediator());
+        for(int i=0; i<5; i++){
+            controlador.getModelo().inicializarEnemigos(fabricaEnemigos.crearEnemigo(i%2==0?new MovimientoAleatorio():new MovimientoPersecucion(controlador.getModelo().getHeroe())));
+        }
+        EliminadorDeEnemigos eliminador = new EliminadorDeEnemigos(controlador);
+        for(int i=0; i<5; i++){
+            controlador.getModelo().getListaEnemigos().get(i).agregarObservador(eliminador);
+        }
     }
 }

@@ -70,12 +70,21 @@ public class BalaBase implements Balas{
     }
 
     @Override
+    public int getPosicionY() {
+        return posicionY;
+    }
+
+    @Override
+    public int getPosicionX() {
+        return posicionX;
+    }
+
+    @Override
     public void run() {
         logicaDeMovimiento();
         if(avanzar){
             runnableMediator.notificar(100,this);
         }
-
     }
 
 }

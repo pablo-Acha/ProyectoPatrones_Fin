@@ -25,6 +25,8 @@ public class MediatorObjetos implements Mediator{
             aparecerEnemigo(remitente);
         }else if(evento.equals("enemigoMovido")){
             moverEnemigo(remitente);
+        }else if(evento.equals("enemigoMuerto")){
+            borrarEnemigo(remitente);
         }
     }
 
@@ -36,11 +38,14 @@ public class MediatorObjetos implements Mediator{
         int nuevaPosicionX = (int) datosMovimiento[3];
         String nombre = (String) datosMovimiento[4];
         String direccion = (String) datosMovimiento[5];
-        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorY;
-        controlador.getVista().actualizarCelda(posicionAnteriorY, posicionAnteriorX,fondo);
-        controlador.getVista().actualizarCelda(nuevaPosicionY, nuevaPosicionX,nombre+direccion);
-
-
+        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorX;
+        Enemigo enemigo = (Enemigo) datosMovimiento[6];
+        if(controlador.getModelo().haycolsionPared(direccion,posicionAnteriorY,posicionAnteriorX)){
+            retrocederEnemigo(direccion,controlador.getModelo().getListaEnemigos().indexOf(enemigo));
+        } else{
+            controlador.getVista().actualizarCelda(posicionAnteriorY, posicionAnteriorX,fondo);
+            controlador.getVista().actualizarCelda(nuevaPosicionY, nuevaPosicionX,nombre+direccion);
+        }
     }
 
 
@@ -52,7 +57,7 @@ public class MediatorObjetos implements Mediator{
         int nuevaPosicionX = (int) datosMovimiento[3];
         String nombre = (String) datosMovimiento[4];
         String direccion = (String) datosMovimiento[5];
-        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorY;
+        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionAnteriorY+"_"+posicionAnteriorX;
         controlador.getVista().actualizarCelda(posicionAnteriorY, posicionAnteriorX,fondo);
         controlador.getVista().actualizarCelda(nuevaPosicionY, nuevaPosicionX,nombre+direccion);
     }
@@ -67,12 +72,11 @@ public class MediatorObjetos implements Mediator{
         Balas bala = (Balas) datosMovimiento[6];
         String nombre = ((String) datosMovimiento[4])+controlador.getModelo().getNivelActual()+direccion;
         String fondo = "pantalladeljuego"+controlador.getModelo().getNivelActual()+posicionAnteriorY+"_"+posicionAnteriorX;
-        if(controlador.getModelo().haycolsionPared(direccion,nuevaPosicionY,nuevaPosicionX)){
+        if(controlador.getModelo().haycolsionPared(direccion,posicionAnteriorY,posicionAnteriorX)
+            || controlador.getModelo().verificarColisionesBala(bala)){
             controlador.getVista().actualizarCelda(posicionAnteriorY,posicionAnteriorX,fondo);
             bala.setStop(false);
         }else{
-
-            //hacerdani0
             controlador.getVista().actualizarCelda(posicionAnteriorY,posicionAnteriorX,fondo);
             controlador.getVista().actualizarCelda(nuevaPosicionY,nuevaPosicionX,nombre);
         }
@@ -100,8 +104,46 @@ public class MediatorObjetos implements Mediator{
         int y = (int) datosMovimiento[0];
         int x = (int) datosMovimiento[1];
         String direccion = (String) datosMovimiento[2];
-        Balas balaBase  = new BalaBase(y,x,direccion,"bala",controlador.getRunnableMediator(),this);
-        controlador.getModelo().addBala(balaBase);
+
+        if(!controlador.getModelo().haycolsionPared(direccion,y,x)){
+            switch (direccion) {
+                case "arriba":
+                    y -= 1;
+                    break;
+                case "derecha":
+                    x += 1;
+                    break;
+                case "abajo":
+                    y += 1;
+                    break;
+                default:
+                    x -= 1;
+                    break;
+            }
+            Balas balaBase  = new BalaBase(y,x,direccion,"bala",controlador.getRunnableMediator(),this);
+            controlador.getModelo().addBala(balaBase);
+        }
+    }
+
+    public void retrocederEnemigo(String direccion, int index){
+        if (direccion.equals("arriba")){
+            controlador.getModelo().getListaEnemigos().get(index).abajo();
+        }else if(direccion.equals("derecha")){
+            controlador.getModelo().getListaEnemigos().get(index).izquierda();
+        }else if(direccion.equals("izquierda")){
+            controlador.getModelo().getListaEnemigos().get(index).derecha();
+        }else{
+            controlador.getModelo().getListaEnemigos().get(index).arriba();
+        }
+    }
+    public void borrarEnemigo(Object remitente){
+        Object[] datosMovimiento = (Object[]) remitente;
+        int posicionY = (int) datosMovimiento[0];
+        int posicionX = (int) datosMovimiento[1];
+        String nombre = (String) datosMovimiento[2];
+        String direccion = (String) datosMovimiento[3];
+        String fondo = "pantalladeljuego" + nombre.charAt(nombre.length()-1)+posicionY+"_"+posicionX;
+        controlador.getVista().actualizarCelda(posicionY,posicionX,fondo);
     }
 }
 

@@ -1,6 +1,9 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
+import java.util.LinkedList;
+
 public class EnemigoBase implements Enemigo, Movible, Runnable {
+    private LinkedList<EnemigoObserver> observadores = new LinkedList<>();
     private int posicionY;
     private int posicionX;
     private int vida = 100;
@@ -10,10 +13,6 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
     MediatorObjetos mediatorObjetos;
     private boolean avanzar = true;
     private EstrategiaMovimiento estrategiaMovimiento;
-//dispare
-
-    //soltar items
-    // reciber danio
 
     public int getPosicionY() {
         return posicionY;
@@ -45,25 +44,21 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
 
     @Override
     public void izquierda() {
-        posicionX-=1;
+        posicionX-=1; direccion = "izquierda";
     }
 
     @Override
     public void derecha() {
-        posicionX+=1;
+        posicionX+=1;direccion = "derecha";
     }
 
     @Override
     public void abajo() {
-        posicionY+=1;
+        posicionY+=1; direccion = "abajo";
     }
 
     @Override
-    public void arriba() {
-        posicionY-=1;
-
-    }
-
+    public void arriba() { posicionY-=1;direccion = "arriba";}
     @Override
     public void atacar() {
 
@@ -72,32 +67,42 @@ public class EnemigoBase implements Enemigo, Movible, Runnable {
         return vida <= 0;
     }
     @Override
-    public void aparecer(){
-        mediatorObjetos.notificar("enemigoAparecer",new Object[]{posicionY, posicionX,nombreimage,direccion});
-    }
-     public void morir() {
-        int v = getPosicionY();
-        int h = getPosicionX();
-        //if(!getGame().isGameOver()){
-        //    getGame().setImageOnCell(v,h,"pantalladeljuego"+getGame().getNivel()+v+"_"+h);
-        //    dejarUnItem();
-        //}
-    }
+    public void aparecer(){mediatorObjetos.notificar("enemigoAparecer",new Object[]{posicionY, posicionX,nombreimage,direccion});}
+
     @Override
     public void run() {
         if (!stop) {
             if(estaMuerto()){
                 stop = true;
-                //getGame().borrarEnemigo();
+                morir();
             } else {
                 int posicionY = getPosicionY();
                 int posicionX = getPosicionX();
                 mover();
-                mediatorObjetos.notificar("enemigoMovido",new Object[]{posicionY, posicionX,getPosicionY(),getPosicionX(),nombreimage,direccion});
+                mediatorObjetos.notificar("enemigoMovido",new Object[]{posicionY, posicionX,getPosicionY(),getPosicionX(),nombreimage,direccion,this});
                 runnableMediator.notificar(1000,this);
             }
-        } else{
-            morir();
         }
+    }
+    @Override
+    public void agregarObservador(EnemigoObserver observador) {
+        observadores.add(observador);
+    }
+
+    private void notificarObservadores() {
+        for (EnemigoObserver observador : observadores) {
+            observador.enemigoMuerto(this);
+        }
+    }
+
+    @Override
+    public void recibirDanio(int danio) {
+        vida-= danio;
+    }
+
+    @Override
+    public void morir() {
+        mediatorObjetos.notificar("enemigoMuerto", new Object[]{posicionY, posicionX,nombreimage,direccion});
+        notificarObservadores();
     }
 }

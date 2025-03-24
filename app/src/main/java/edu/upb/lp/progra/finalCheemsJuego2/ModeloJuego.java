@@ -8,14 +8,13 @@ import java.util.List;
 public class ModeloJuego {
     // Atributos
     private Heroe heroe;
-    private List<Enemigo> listaEnemigos = new ArrayList<>();
+    private LinkedList<Enemigo> listaEnemigos = new LinkedList<>();
     private LinkedList<Balas> listabalas = new LinkedList<>();
 //    private List<Item> items;
     private boolean[][] paredesYobstaculos;
     private int nivelActual;
     private int vidas;
     private int puntuacion;
-    private FabricaEnemigos fabricaEnemigos;
     private PreferenciasJuego preferencias;
 
     public void setConector(FinalCheemsConector conector) {
@@ -70,7 +69,7 @@ public class ModeloJuego {
         conector.executeLater((EnemigoBase)enemigo, 0);
     }
 
-    public List<Enemigo> getListaEnemigos() {
+    public LinkedList<Enemigo> getListaEnemigos() {
         return listaEnemigos;
     }
     public void accionPersonaje(String accion){
@@ -108,21 +107,16 @@ public class ModeloJuego {
     /**
      * Verifica colisiones entre objetos (por ejemplo, balas con enemigos).
      */
-    /*private void verificarColisiones() {
-        for (Bala bala : balas) {
-            for (Enemigo enemigo : enemigos) {
-                if (bala.getPosicionY() == enemigo.getPosicionY() &&
-                        bala.getPosicionX() == enemigo.getPosicionX()) {
-                    // Colisión detectada: la bala impacta al enemigo
-                    enemigo.recibirDanio(bala.getDanio());
-                    balas.remove(bala);
-                    // Notificar al Mediator sobre la colisión
-                    mediator.notificar("colisionBalaEnemigo", new Object[]{bala, enemigo});
-                    break;
-                }
+    public boolean verificarColisionesBala(Balas bala) {
+        for (Enemigo enemigo : listaEnemigos) {
+            if(bala.getPosicionY() == enemigo.getPosicionY() &&
+                    bala.getPosicionX() == enemigo.getPosicionX()){
+                enemigo.recibirDanio(20);
+                return true;
             }
         }
-    }*/
+        return false;
+    }
 
     /**
      * Recoge un ítem en la posición especificada.
@@ -145,16 +139,6 @@ public class ModeloJuego {
     /**
      * Inicializa los enemigos para el nivel actual.
      */
-    /*private void inicializarEnemigos() {
-        // Lógica para crear enemigos según el nivel
-        enemigos.clear();
-        if (nivelActual == 1) {
-            enemigos.add(new Enemigo(5, 10)); // Ejemplo: enemigo en la posición (5, 10)
-        } else if (nivelActual == 2) {
-            enemigos.add(new Enemigo(3, 15));
-            enemigos.add(new Enemigo(7, 5));
-        }
-    }*/
 
     /**
      * Inicializa los ítems para el nivel actual.

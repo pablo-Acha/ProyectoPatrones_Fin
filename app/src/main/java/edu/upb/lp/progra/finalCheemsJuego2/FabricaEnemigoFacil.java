@@ -15,7 +15,7 @@ public class FabricaEnemigoFacil implements FabricaEnemigos{
     public Enemigo crearEnemigo(EstrategiaMovimiento em) {
         Random random = new Random();
         int x = random.nextInt(10)+5;
-        int y = random.nextInt(5)+1;
+        int y = random.nextInt(5)+3;
 
         return new EnemigoBase(y,x,"derecha","chihuhuafacil1",runnableMediator,mediatorObjetos, em);
     }

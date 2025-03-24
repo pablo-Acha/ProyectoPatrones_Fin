@@ -9,4 +9,6 @@ public interface Movible extends Runnable {
     void derecha();
     void izquierda();
     void logicaDeMovimiento();
+    int getPosicionY();
+    int getPosicionX();
 }

@@ -1,8 +1,6 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
 public class ControladorJuego {
-    private FabricaEnemigos fabricaEnemigos;
-    private FabricaNiveles fabricaNiveles;
     private EstadoJuego estadoActual;
     private VistaJuego vista;
     private ModeloJuego modelo;
@@ -55,7 +53,6 @@ public class ControladorJuego {
     public FinalCheemsConector getConector() {
         return conector;
     }
-
     public RunnableMediator getRunnableMediator() {
         return runnableMediator;
     }

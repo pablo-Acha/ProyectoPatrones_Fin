@@ -1,11 +1,13 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
-public class Heroe {
+public class Heroe implements Atacados {
     int posicionX;
     int posicionY;
     private String direccion;
     private MediatorObjetos mediator;
     private String nombre;
+
+    int vida = 100;
 
     private int municion = 100;
     /**
@@ -65,5 +67,15 @@ public class Heroe {
     }
     public boolean hasMunicion(){
         return municion>0;
+    }
+
+    @Override
+    public void recibirDanio(int danio) {
+        vida-= danio;
+    }
+
+    @Override
+    public void morir() {
+
     }
 }
