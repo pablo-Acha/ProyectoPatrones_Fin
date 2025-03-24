@@ -1,5 +1,7 @@
 package edu.upb.lp.progra.finalCheemsJuego2;
 
+import edu.upb.lp.progra.finalCheemsJuego.NoTienesBalasException;
+
 public class VistaJuego {
     private FinalCheemsConector conector;
 
@@ -56,6 +58,20 @@ public class VistaJuego {
             conector.setImageOnCell(0,20,"pantalladeljuego"+ nivel +0+"_"+20);
             conector.setImageOnCell(0,19,"pantalladeljuego"+ nivel +0+"_"+19);
             conector.setImageOnCell(0,18,"pantalladeljuego"+ nivel +0+"_"+18);
+        }
+    }
+    public void actualizarMunicion(int balas){
+        int decimales = balas % 100;
+        decimales /= 10;
+        int unidades = balas % 10;
+        if (balas > 0 && balas < 100) {
+            conector.setImageOnCell(0, 0, "n0");
+            conector.setImageOnCell(0, 1, "n" + decimales);
+            conector.setImageOnCell(0, 2, "n" + unidades);
+        } else if (balas >= 100) {
+            conector.setImageOnCell(0, 0, "n1");
+            conector.setImageOnCell(0, 1, "n0");
+            conector.setImageOnCell(0, 2, "n0");
         }
     }
 }

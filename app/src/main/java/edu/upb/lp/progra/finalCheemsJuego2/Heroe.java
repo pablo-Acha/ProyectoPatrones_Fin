@@ -40,28 +40,27 @@ public class Heroe implements Atacados {
         }else{
             this.posicionX-=1;
         }
-
-
         // Notificar al Mediator sobre el movimiento
         mediator.notificar("heroeMovido", new Object[]{posicionAnteriorY, posicionAnteriorX, posicionY, posicionX,nombre,direccion});
     }
-
 
     public void aparecer(){
         mediator.notificar("heroeAparecer", new Object[]{posicionY, posicionX,nombre,direccion});
     }
 
     public void disparar(){
-        mediator.notificar("heroeDispara", new Object[]{posicionY, posicionX,direccion});
+        if(municion>0){
+            mediator.notificar("heroeDispara", new Object[]{posicionY, posicionX,direccion});
+            municion-=1;
+            mediator.notificar("modificarMunicion",municion);
+        }
     }
     public int getPosicionX() {
         return posicionX;
     }
-
     public int getPosicionY() {
         return posicionY;
     }
-
     public String getDireccion() {
         return direccion;
     }
@@ -72,6 +71,7 @@ public class Heroe implements Atacados {
     @Override
     public void recibirDanio(int danio) {
         vida-= danio;
+        if(vida<=0){morir();}
         mediator.notificar("actualizarVida",vida);
     }
 

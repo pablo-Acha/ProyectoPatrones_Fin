@@ -31,6 +31,8 @@ public class MediatorObjetos implements Mediator{
             enemigoDispara(remitente);
         }else if(evento.equals("actualizarVida")){
             actualizarVida(remitente);
+        }else if(evento.equals("modificarMunicion")){
+            actualizarMunicion(remitente);
         }
     }
 
@@ -177,6 +179,11 @@ public class MediatorObjetos implements Mediator{
     private void actualizarVida(Object remitente){
         int vida = (int) remitente;
         controlador.getVista().cambiarCorzones(vida,controlador.getModelo().getNivelActual());
+    }
+
+    private void actualizarMunicion(Object remitente){
+        int vida = (int) remitente;
+        controlador.getVista().actualizarMunicion(vida);
     }
 }
 
