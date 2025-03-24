@@ -72,6 +72,7 @@ public class Heroe implements Atacados {
     @Override
     public void recibirDanio(int danio) {
         vida-= danio;
+        mediator.notificar("actualizarVida",vida);
     }
 
     @Override

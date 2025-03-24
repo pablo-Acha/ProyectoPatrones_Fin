@@ -44,4 +44,18 @@ public class VistaJuego {
     public void cambiarPersonaje(String nombre){
         actualizarCelda(0, 0, nombre+"0_0" );
     }
+
+    public void cambiarCorzones(int vida, int nivel){
+        if (vida <= 0) {
+            conector.setImageOnCell(0,18,"imagenunsolocora");
+        } else if (vida< 33) {
+            conector.setImageOnCell(0,19,"imagenunsolocora");
+        } else if (vida< 66){
+            conector.setImageOnCell(0,20,"imagenunsolocora");
+        } else if (vida <= 100){
+            conector.setImageOnCell(0,20,"pantalladeljuego"+ nivel +0+"_"+20);
+            conector.setImageOnCell(0,19,"pantalladeljuego"+ nivel +0+"_"+19);
+            conector.setImageOnCell(0,18,"pantalladeljuego"+ nivel +0+"_"+18);
+        }
+    }
 }

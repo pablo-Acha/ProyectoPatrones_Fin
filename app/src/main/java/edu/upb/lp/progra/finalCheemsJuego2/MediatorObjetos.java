@@ -29,6 +29,8 @@ public class MediatorObjetos implements Mediator{
             borrarEnemigo(remitente);
         }else if(evento.equals("enemigoDispara")){
             enemigoDispara(remitente);
+        }else if(evento.equals("actualizarVida")){
+            actualizarVida(remitente);
         }
     }
 
@@ -171,6 +173,10 @@ public class MediatorObjetos implements Mediator{
             Balas balaBase  = new BalaBase(y,x,direccion,"bala",controlador.getRunnableMediator(),this);
             controlador.getModelo().addBala(balaBase);
         }
+    }
+    private void actualizarVida(Object remitente){
+        int vida = (int) remitente;
+        controlador.getVista().cambiarCorzones(vida,controlador.getModelo().getNivelActual());
     }
 }
 
